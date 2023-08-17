@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gakusei</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="/css/trang-chu.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/fontawesome-free-6.4.0-web/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lugrasimo&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="app">
+        <header class="header">
+            <nav class="header__navbar">
+                <div class="header__navbar-left">
+                    <a href="/">
+                        <button type="submit" class="button" style="width: 60px;">
+                            <img src="/img/Logo.png" class="header__navbar-logo">
+                        </button>
+                    </a>
+
+                    <form action="/tim-kiem" method="GET">
+                        <div class="header__navbar-search">
+                            <input type="text" name="maGV" class="header__navbar-input"
+                                placeholder="Tìm kiếm thông tin giáo viên">
+                            <button type="submit" class="button" style="background-color: #fff;">
+                                <i class="fa-solid fa-magnifying-glass icon"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <ul class="header__navbar-list">
+                    <li class="header__navbar-item">
+                        <button type="submit" class="button">
+                            <div class="header__navbar-help separate" id="help">
+                                <i class="fa-regular fa-circle-question"></i> Trợ giúp
+                            </div>
+                        </button>
+                    </li>
+                    <li class="header__navbar-item separate">
+                        <a href="/trang-ca-nhan">
+                            <button type="submit" class="button">
+                                <div class="header__navbar-name" style="margin: 0;">
+                                    <i class="fa-solid fa-user"></i> {{HoTen}} {{this_user.username}}
+                                </div>
+                            </button>
+                        </a>
+                    </li>
+
+                    <li class="header__navbar-item" style="margin: 0">
+                        <div class="button" onclick="toggleDropdown()">
+                            <div class="header__navbar-logout" style="padding-left: 3px;">
+                                <i class="fa-solid fa-bars"></i>
+                            </div>
+                            <div class="header__navar-menu">
+                                <div class="menu" id="myDropdown">
+                                    <a href="/trang-ca-nhan">
+                                        <button type="submit" class="menu-item" style="margin: 0;"
+                                            href="/trang-ca-nhan">
+                                            <i class="fa-sharp fa-solid fa-user"></i> Trang cá nhân
+                                        </button>
+                                    </a>
+                                    <a href="/doi-mat-khau">
+                                        <button type="submit" class="menu-item" style="margin: 0;">
+                                            <i class="fa-solid fa-lock"></i> Đổi mật khẩu
+                                        </button>
+                                    </a>
+                                    <form action="/dang-xuat?_method=DELETE" method="POST">
+                                        <button type="submit" class="menu-item" style="margin: 0;">
+                                            <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <h1 class="tittle">
+            <p style="margin-top: 50px; margin-bottom: 0; background: transparent"> Thời khóa biểu lớp {{Lop}} </p>
+        </h1>
+        <div class="container">
+            <div class="container__schedule">
+                <div class="schedule__row">
+                    <div class="schedule__header">Tiết</div>
+                    <div class="schedule__header">Thứ 2</div>
+                    <div class="schedule__header">Thứ 3</div>
+                    <div class="schedule__header">Thứ 4</div>
+                    <div class="schedule__header">Thứ 5</div>
+                    <div class="schedule__header">Thứ 6</div>
+                </div>
+                <div class="schedule__row">
+                    <div class="shedule__row-element shift">
+                        1
+                    </div>
+                    {{#each Ca1}}
+                    <div class="shedule__row-element">
+                        <div class="shedule__row-element-input">{{this.TenMon}}</div>
+                        <div class="shedule__row-element-hidden">
+                            <ul class="hidden">
+                                <li>
+                                    <label>Phòng học: {{this.Phong}}</label>
+                                    <div class="subject-infor"></div>
+                                </li>
+                                <li>
+                                    <label>Giáo viên: {{this.TenGV}}</label>
+                                    <div class="subject-infor"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+                <div class="schedule__row">
+                    <div class="shedule__row-element shift">
+                        2
+                    </div>
+                    {{#each Ca2}}
+                    <div class="shedule__row-element">
+                        <div class="shedule__row-element-input">{{this.TenMon}}</div>
+                        <div class="shedule__row-element-hidden">
+                            <ul class="hidden">
+                                <li>
+                                    <label>Phòng học: {{this.Phong}}</label>
+                                    <div class="subject-infor"></div>
+                                </li>
+                                <li>
+                                    <label>Giáo viên: {{this.TenGV}}</label>
+                                    <div class="subject-infor"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+                <div class="schedule__row">
+                    <div class="shedule__row-element shift">
+                        3
+                    </div>
+                    {{#each Ca3}}
+                    <div class="shedule__row-element">
+                        <div class="shedule__row-element-input">{{this.TenMon}}</div>
+                        <div class="shedule__row-element-hidden">
+                            <ul class="hidden">
+                                <li>
+                                    <label>Phòng học: {{this.Phong}}</label>
+                                    <div class="subject-infor"></div>
+                                </li>
+                                <li>
+                                    <label>Giáo viên: {{this.TenGV}}</label>
+                                    <div class="subject-infor"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            var dropdownMenu = document.getElementById("myDropdown");
+            dropdownMenu.style.display = (dropdownMenu.style.display === "none") ? "flex" : "none";
+        }
+        document.getElementById("help").addEventListener("click", function () {
+            alert("Tính năng đang phát triển")
+        });
+    </script>
+</body>

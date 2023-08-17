@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đổi mật khẩu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="/css/doi-mat-khau.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="/fontawesome-free-6.4.0-web/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lugrasimo&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="app">
+        <header class="header">
+            <nav class="header__navbar">
+                <div class="header__navbar-left">
+                    <a href="/">
+                        <button type="submit" class="button" style="width: 60px;">
+                            <img src="/img/Logo.png" class="header__navbar-logo">
+                        </button>
+                    </a>
+
+                    <form action="/tim-kiem" method="GET">
+                        <div class="header__navbar-search">
+                            <input type="text" name="maGV" class="header__navbar-input"
+                                placeholder="Tìm kiếm thông tin giáo viên">
+                            <button type="submit" class="button" style="background-color: #fff;">
+                                <i class="fa-solid fa-magnifying-glass icon"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <ul class="header__navbar-list">
+                    <li class="header__navbar-item">
+                        <button type="submit" class="button">
+                            <div class="header__navbar-help separate" id="help">
+                                <i class="fa-regular fa-circle-question"></i> Trợ giúp
+                            </div>
+                        </button>
+                    </li>
+                    <li class="header__navbar-item separate">
+                        <a href="/trang-ca-nhan">
+                            <button type="submit" class="button">
+                                <div class="header__navbar-name" style="margin: 0;">
+                                    <i class="fa-solid fa-user"></i> {{this_user.name}} {{this_user.username}}
+                                </div>
+                            </button>
+                        </a>
+                    </li>
+
+                    <li class="header__navbar-item" style="margin: 0">
+                        <div class="button" onclick="toggleDropdown()">
+                            <div class="header__navbar-logout" style="padding-left: 3px;">
+                                <i class="fa-solid fa-bars"></i>
+                            </div>
+                            <div class="header__navar-menu">
+                                <div class="menu" id="myDropdown">
+                                    <a href="/trang-ca-nhan">
+                                        <button type="submit" class="menu-item" style="margin: 0;"
+                                            href="/trang-ca-nhan">
+                                            <i class="fa-sharp fa-solid fa-user"></i> Trang cá nhân
+                                        </button>
+                                    </a>
+                                    <a href="/doi-mat-khau">
+                                        <button type="submit" class="menu-item" style="margin: 0;">
+                                            <i class="fa-solid fa-lock"></i> Đổi mật khẩu
+                                        </button>
+                                    </a>
+                                    <form action="/dang-xuat?_method=DELETE" method="POST">
+                                        <button type="submit" class="menu-item" style="margin: 0;">
+                                            <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div class="container">
+            <h1 class="container__title">Đổi mật khẩu</h1>
+            <div class="container-flex">
+                <div class="none"></div>
+                <form class="container__change-password" action="/doi-mat-khau" method="post">
+                    {{#if error}}
+                    <div class="error-message" role="alert">
+                        {{error}}
+                    </div>
+                    {{/if}}
+                    <div class="container__password">
+                        <label for="password" class="container__password-card">Mật khẩu hiện tại:</label>
+                        <input type="password" class="container__password-input" name="oldPW"
+                            placeholder="Mật khẩu hiện tại" required>
+                    </div>
+                    <div class="container__password">
+                        <label for="password" class="container__password-card">Mật khẩu mới:</label>
+                        <input type="password" class="container__password-input" name="newPW" placeholder="Mật khẩu mới"
+                            required>
+                    </div>
+                    <div class="container__password">
+                        <label for="password" class="container__password-card">Nhập lại mật khẩu mới:</label>
+                        <input type="password" class="container__password-input" name="confirmPW" required
+                            placeholder="Mật khẩu mới">
+                    </div>
+                    <div class="forgot-password" id="forgot-password">
+                        Quên mật khẩu?
+                    </div>
+                    <button type="submit" class="save">Lưu thay đổi</button>
+                </form>
+                <div class="none"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleDropdown() {
+            var dropdownMenu = document.getElementById("myDropdown");
+            dropdownMenu.style.display = (dropdownMenu.style.display === "none") ? "flex" : "none";
+        }
+        document.getElementById("help").addEventListener("click", function () {
+            alert("Tính năng đang phát triển")
+        });
+        document.getElementById("forgot-password").addEventListener("click", function () {
+            alert("Tính năng đang phát triển")
+        });
+    </script>
+</body>
+
+</html>
